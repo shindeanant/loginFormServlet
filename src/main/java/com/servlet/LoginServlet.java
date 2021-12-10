@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 
@@ -24,8 +25,16 @@ public class LoginServlet extends HttpServlet {
 		/*
 		 * / Get Request parameters for userId and Password
 		 */
+		/*
+		 * / Regex pattern for user name
+		 */
 		String user = request.getParameter("user");
+		String namePattern = "^[A-Z]{1}[a-z]{3,}$";
+		Pattern pat = Pattern.compile(namePattern);
+		Matcher match = pat.matcher(user);
+
 		String pwd = request.getParameter("pwd");
+
 		/*
 		 * / get servlet configuration init parameters
 		 */
