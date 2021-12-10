@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
-
 /**
  * Servlet implementation class LoginServlet
  */
@@ -32,9 +31,13 @@ public class LoginServlet extends HttpServlet {
 		String namePattern = "^[A-Z]{1}[a-z]{3,}$";
 		Pattern pat = Pattern.compile(namePattern);
 		Matcher match = pat.matcher(user);
-
+		/*
+		 * / Regex pattern for password
+		 */
 		String pwd = request.getParameter("pwd");
-
+		String password = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()]).{8,}$";
+		Pattern p2 = Pattern.compile(password);
+		Matcher m2 = p2.matcher(pwd);
 		/*
 		 * / get servlet configuration init parameters
 		 */
